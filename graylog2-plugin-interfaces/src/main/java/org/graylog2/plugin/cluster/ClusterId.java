@@ -27,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 
+import java.util.UUID;
+
 @JsonAutoDetect
 @AutoValue
 public abstract class ClusterId {
@@ -36,5 +38,9 @@ public abstract class ClusterId {
     @JsonCreator
     public static ClusterId create(@JsonProperty("cluster_id") String clusterId) {
         return new AutoValue_ClusterId(clusterId);
+    }
+
+    public static ClusterId defaultConfig() {
+        return create(UUID.randomUUID().toString());
     }
 }
